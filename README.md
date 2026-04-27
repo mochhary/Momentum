@@ -60,7 +60,7 @@
 
 | Halaman Pemilihan Frame | Editor Foto Mobile | Pembayaran QRIS |
 | :---: | :---: | :---: |
-| ![Selection](https://via.placeholder.com/200x400?text=Selection+Page) | ![Editor](https://via.placeholder.com/200x400?text=Mobile+Editor) | ![QRIS](https://via.placeholder.com/200x400?text=QRIS+Payment) |
+| <img src="https://placehold.co/200x400?text=Selection+Page" width="200"> | <img src="https://placehold.co/200x400?text=Mobile+Editor" width="200"> | <img src="https://placehold.co/200x400?text=QRIS+Payment" width="200"> |
 
 ---
 
@@ -137,8 +137,9 @@ BOOTH_SECRET_TOKEN=isi_token_anda_disini
 ## <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/map.svg" width="24" height="24"> Roadmap
 - [x] Integrasi Midtrans QRIS
 - [x] Fitur Auto-Print (Silent)
+- [x] Mode Foto (Color & B&W)
 - [ ] Support Multi-Booth dalam satu Admin
-- [ ] Fitur Filter Foto (B&W, Sepia, Vivid)
+- [ ] Fitur Filter Lanjutan (Sepia, Vivid, dsb)
 - [ ] Integrasi Cloud Storage untuk Backup Foto
 
 ---
