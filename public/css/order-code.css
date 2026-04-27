@@ -1,0 +1,86 @@
+/**
+ * Order Code Page Styling
+ */
+
+.code-page {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+.code-card {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.success-icon-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-cream);
+    color: #92400E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin: 0 auto 24px;
+    box-shadow: var(--shadow-md);
+}
+
+.display-order-code {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 8px;
+    color: var(--primary);
+    margin: 24px 0;
+    padding: 24px;
+    background: var(--bg-cream-light);
+    border-radius: var(--radius-md);
+    border: 3px dashed var(--primary);
+    user-select: all;
+    line-height: 1;
+    filter: drop-shadow(0 10px 20px rgba(66, 122, 181, 0.1));
+}
+
+.guide-box {
+    background: #FFFBEB;
+    border: 2px solid #FDE68A;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin: 24px 0;
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+}
+
+.guide-title {
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #92400E;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.guide-list {
+    padding-left: 24px;
+    color: #92400E;
+    font-size: 1rem;
+}
+
+.guide-list li { margin-bottom: 16px; font-weight: 600; line-height: 1.5; }
+.guide-list li strong { color: #1A2E44; }
+
+@media (max-width: 576px) {
+    .code-page { padding: 20px 16px; }
+    .display-order-code { font-size: 3rem; letter-spacing: 6px; padding: 20px; }
+    .success-icon-box { width: 80px; height: 80px; font-size: 3rem; margin-bottom: 24px; }
+    .guide-box { padding: 24px; margin: 32px 0; }
+    .guide-list { font-size: 0.95rem; }
+}
