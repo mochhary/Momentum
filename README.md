@@ -1,59 +1,109 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📸 Momentum Photobooth
+
+[![Laravel Version](https://img.shields.io/badge/Laravel-v11.x-FF2D20?style=flat-square&logo=laravel)](https://laravel.com)
+[![PHP Version](https://img.shields.io/badge/PHP-v8.2+-777BB4?style=flat-square&logo=php)](https://php.net)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+
+**Momentum Photobooth** adalah solusi sistem manajemen photobooth modern yang menghubungkan pengalaman pelanggan (upload & edit) dengan operasional mesin booth secara *real-time*. Dibangun dengan fokus pada performa tinggi, estetika premium, dan kemudahan integrasi pembayaran.
+
+---
+
+## ✨ Fitur Utama
+
+### 👨‍👩‍👧‍👦 Sisi Pelanggan (Customer Flow)
+- **Selection System**: Pilih berbagai template frame menarik dengan satu klik.
+- **Advanced Editor**: Upload foto dan sesuaikan posisi (Geser, Zoom, Putar, Mirror) langsung di browser menggunakan `Moveable.js`.
+- **Instant Code**: Dapatkan kode pesanan unik untuk digunakan langsung di mesin booth.
+
+### 🤖 Sisi Mesin Booth (Kiosk Mode)
+- **Silent Access**: Masuk ke sistem booth menggunakan token rahasia.
+- **Seamless Payment**: Integrasi **Midtrans QRIS** untuk pembayaran instan di tempat.
+- **Auto-Printing**: Sistem otomatis memicu pencetakan setelah pembayaran diverifikasi.
+- **Kiosk Optimized**: Kursor otomatis tersembunyi dan UI dirancang untuk layar sentuh/kiosk.
+
+### 📊 Dashboard Operator (Admin)
+- **Live Statistics**: Pantau pendapatan, jumlah pesanan, dan status secara real-time.
+- **Frame Management**: Tambah, hapus, dan atur template frame dengan mudah.
+- **Reporting**: Data statistik harian yang di-reset otomatis setiap jam 12 malam WIB.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend**: [Laravel 11](https://laravel.com)
+- **Database**: MySQL / MariaDB
+- **Frontend**: Vanilla JS, [GSAP](https://greensock.com/gsap/) (Animations), [Moveable.js](https://daybrush.com/moveable/)
+- **Payment Gateway**: [Midtrans API](https://midtrans.com)
+- **Styling**: Momentum Design System (Pure CSS)
+
+---
+
+## 🚀 Instalasi Cepat
+
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/mochhary/Momentum.git
+   cd Momentum
+   ```
+
+2. **Install Dependensi**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Konfigurasi Environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Setup Database**
+   Sesuaikan konfigurasi DB di `.env`, lalu jalankan migrasi:
+   ```bash
+   php artisan migrate --seed
+   ```
+
+5. **Jalankan Server**
+   ```bash
+   php artisan serve
+   ```
+
+---
+
+## ⚙️ Konfigurasi Penting
+
+Pastikan Anda mengisi variabel berikut di `.env` untuk fitur pembayaran:
+
+```env
+MIDTRANS_SERVER_KEY=your_server_key
+MIDTRANS_CLIENT_KEY=your_client_key
+MIDTRANS_IS_PRODUCTION=false
+
+# Token rahasia untuk akses mesin booth
+BOOTH_SECRET_TOKEN=KioskMomentum2K26
+
+# Timezone (WIB)
+APP_TIMEZONE=Asia/Jakarta
+```
+
+---
+
+## 🖨️ Panduan Silent Printing (Kiosk Mode)
+
+Untuk mengaktifkan pencetakan otomatis tanpa pop-up konfirmasi di mesin booth, jalankan browser Chrome dengan flag berikut:
+
+- **Windows**: `chrome.exe --kiosk --kiosk-printing http://localhost:8000/booth?token=KioskMomentum2K26`
+- **macOS**: `open -a "Google Chrome" --args --kiosk-printing`
+
+---
+
+## 📝 Lisensi
+
+Proyek ini berada di bawah lisensi **MIT**. Silakan gunakan dan modifikasi sesuai kebutuhan Anda.
+
+---
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  Dibuat dengan ❤️ oleh <strong>Moch Hary</strong>
 </p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
