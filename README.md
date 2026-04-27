@@ -60,7 +60,7 @@
 
 | Halaman Pemilihan Frame | Editor Foto Mobile | Pembayaran QRIS |
 | :---: | :---: | :---: |
-| <img src="public/img/readme/selection.png" width="200" alt="Selection Page"> | <img src="public/img/readme/editor.png" width="200" alt="Mobile Editor"> | <img src="public/img/readme/payment.png" width="200" alt="QRIS Payment"> |
+| <img src="public/img/readme/selection.jpg" width="200" alt="Selection Page"> | <img src="public/img/readme/editor.jpg" width="200" alt="Mobile Editor"> | <img src="public/img/readme/payment.png" width="200" alt="QRIS Payment"> |
 
 ---
 
@@ -78,7 +78,7 @@ Aplikasi ini dibangun menggunakan tumpukan teknologi modern untuk memastikan per
   <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git">
 </p>
 
-- **Backend Logic**: Laravel 11 dengan sistem arsitektur MVC yang bersih.
+- **Backend Logic**: Laravel 12 dengan sistem arsitektur MVC yang bersih.
 - **Frontend Animations**: GSAP untuk transisi antarmuka yang sangat halus.
 - **Image Editor**: Moveable.js untuk manipulasi foto yang fleksibel.
 - **Payment Gateway**: Midtrans Snap API untuk integrasi pembayaran QRIS yang aman.
