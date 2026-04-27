@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Laravel-v11.x-FF2D20?style=for-the-badge&logo=laravel" alt="Laravel">
+  <img src="https://img.shields.io/badge/Laravel-v12.x-FF2D20?style=for-the-badge&logo=laravel" alt="Laravel">
   <img src="https://img.shields.io/badge/PHP-v8.2+-777BB4?style=for-the-badge&logo=php" alt="PHP">
   <img src="https://img.shields.io/badge/MySQL-v8.0-4479A1?style=for-the-badge&logo=mysql" alt="MySQL">
   <img src="https://img.shields.io/badge/Midtrans-Ready-003580?style=for-the-badge&logo=visa" alt="Midtrans">
