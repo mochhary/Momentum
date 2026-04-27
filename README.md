@@ -60,7 +60,7 @@
 
 | Halaman Pemilihan Frame | Editor Foto Mobile | Pembayaran QRIS |
 | :---: | :---: | :---: |
-| <img src="https://placehold.co/200x400?text=Selection+Page" width="200"> | <img src="https://placehold.co/200x400?text=Mobile+Editor" width="200"> | <img src="https://placehold.co/200x400?text=QRIS+Payment" width="200"> |
+| <img src="public/img/readme/selection.png" width="200" alt="Selection Page"> | <img src="public/img/readme/editor.png" width="200" alt="Mobile Editor"> | <img src="public/img/readme/payment.png" width="200" alt="QRIS Payment"> |
 
 ---
 
