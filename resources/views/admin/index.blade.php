@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Admin Dashboard - Photobooth Studio')
+@section('title', 'Dashboard')
 
 
 @section('styles')

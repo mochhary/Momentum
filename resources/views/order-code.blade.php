@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kode Order - Photobooth Studio')
+@section('title', 'Kode Order')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/order-code.css') }}">

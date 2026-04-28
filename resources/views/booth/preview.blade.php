@@ -1,5 +1,5 @@
 @extends('layouts.booth')
-@section('title', 'Preview Foto - Booth Cetak')
+@section('title', 'Preview Foto')
 
 @section('content')
 <div class="card booth-card animate-in">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Upload Foto - Photobooth Studio')
+@section('title', 'Upload Foto')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/upload.css') }}">

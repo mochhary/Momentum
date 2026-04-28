@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', 'Momentum - Professional Photobooth Kiosk')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -8,7 +7,11 @@
 @section('content')
 <section class="landing-hero">
     <div class="hero-content animate-in">
-        <div class="hero-logo"><i class="ph ph-camera"></i> Momentum</div>
+        <div class="hero-logo" style="margin-bottom: 40px;">
+            <img src="{{ asset('images/logo.png') }}" alt="Momentum" 
+                 style="height: 250px; width: auto; object-fit: contain;" 
+                 fetchpriority="high" loading="eager">
+        </div>
         <h1 class="hero-title">Abadikan Setiap <span>Momen</span> Berharga.</h1>
         <p class="hero-desc">
             Solusi photobooth digital modern. Upload foto dari smartphone Anda, pilih frame eksklusif, dan cetak langsung di booth kami.
@@ -37,7 +40,7 @@
     </div>
 
     <div style="position: absolute; bottom: 40px; width: 100%; text-align: center; color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">
-        <p>&copy; {{ date('Y') }} Momentum Studio. All rights reserved.</p>
+        <p>&copy; {{ date('Y') }} Momentum. All rights reserved.</p>
     </div>
 </section>
 @endsection

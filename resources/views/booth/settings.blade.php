@@ -1,5 +1,5 @@
 @extends('layouts.booth')
-@section('title', 'Pengaturan Cetak - Booth')
+@section('title', 'Pengaturan')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/booth-settings.css') }}">

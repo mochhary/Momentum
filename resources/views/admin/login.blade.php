@@ -1,5 +1,5 @@
 @extends('layouts.booth')
-@section('title', 'Login Operator - Photobooth Studio')
+@section('title', 'Login Operator')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/admin-login.css') }}">
@@ -9,14 +9,15 @@
 @if(session('captcha_error'))
     <span id="session-captcha-error" style="display: none;">{{ session('captcha_error') }}</span>
 @endif
-<div class="login-container">
-    <div class="booth-card card animate-in" style="max-width: 480px;">
-        <div class="auth-header">
-            <div class="card-branding">
-                <i class="ph ph-camera"></i> Momentum
-            </div>
-        </div>
-
+<div class="login-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-vh: 100vh;">
+    <div class="login-logo-wrapper" style="margin-bottom: 20px; text-align: center;">
+        <img src="{{ asset('images/logo.png') }}" alt="Momentum" 
+             width="500" height="220"
+             style="height: 220px; width: auto; object-fit: contain;" 
+             fetchpriority="high" loading="eager" decoding="async">
+    </div>
+    
+    <div class="booth-card card animate-in" style="max-width: 480px; width: 100%;">
         <form action="{{ route('admin.login.submit') }}" method="POST" style="text-align: left;">
             @csrf
             <div class="form-group">

@@ -1,5 +1,14 @@
 @extends('layouts.booth')
-@section('title', 'Booth Cetak - Masukkan Kode Order')
+@section('title', 'Booth')
+
+@section('styles')
+<style>
+    .booth-logo img {
+        height: 250px !important;
+        margin-bottom: 10px;
+    }
+</style>
+@endsection
 
 @section('content')
 <div class="card booth-card animate-in">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Photobooth Studio - Upload & Cetak Foto')
+@section('title', 'Momentum')
 
 @section('styles')
 <style>

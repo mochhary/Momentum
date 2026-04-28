@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Pilih Frame - Photobooth Studio')
+@section('title', 'Pilih Frame')
 
 @section('content')
 <div class="frame-page container animate-in">

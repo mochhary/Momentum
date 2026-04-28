@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Manajemen Frame - Photobooth Studio')
+@section('title', 'Manajemen Frame')
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/frames.css') }}">
