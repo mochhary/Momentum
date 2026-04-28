@@ -14,7 +14,7 @@ class AdminController extends Controller
     {
         $status = $request->get('status');
         $month = $request->get('month', \Carbon\Carbon::now()->format('Y-m'));
-        $groupBy = $request->get('group_by', 'monthly');
+        $groupBy = $request->get('group_by', 'daily');
 
         $parsedMonth = \Carbon\Carbon::createFromFormat('Y-m', $month);
 

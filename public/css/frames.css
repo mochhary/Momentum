@@ -160,20 +160,16 @@
 
 .slot-node {
     position: absolute;
-    background: rgba(66, 122, 181, 0.4);
-    border: 3px solid var(--primary);
+    background: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: move;
     user-select: none;
     box-sizing: border-box;
-    transition: background 0.2s;
 }
 
 .slot-node.active {
-    background: rgba(66, 122, 181, 0.7);
-    box-shadow: 0 0 30px rgba(66, 122, 181, 0.6);
     z-index: 100;
 }
 

@@ -29,11 +29,11 @@
     </div>
 
     <!-- Filter Form -->
-    <form method="GET" action="{{ route('admin.index') }}" class="filter-bar animate-in" id="filterForm">
+    <form method="GET" action="{{ route('admin.index') }}" class="filter-bar animate-in d-flex justify-content-between align-items-center" id="filterForm">
         <input type="hidden" name="group_by" id="groupByInput" value="{{ $groupBy }}">
         
         <div class="d-flex align-items-center gap-2">
-            <span class="text-uppercase text-bold text-muted-custom">Status:</span>
+            <span class="text-uppercase text-bold text-muted-custom">Status</span>
             <div class="pill-tabs">
                 <button type="submit" name="status" value="" class="pill-tab {{ !$status ? 'active' : '' }}">Semua</button>
                 <button type="submit" name="status" value="waiting" class="pill-tab {{ $status === 'waiting' ? 'active' : '' }}">Waiting</button>
@@ -43,13 +43,14 @@
                 <button type="submit" name="status" value="expired" class="pill-tab {{ $status === 'expired' ? 'active' : '' }}">Expired</button>
             </div>
         </div>
-                <div class="filter-group-inline">
-                <label class="form-label-inline">Pilih Periode</label>
-                <div class="input-with-icon" style="width: 220px;">
-                    <i class="ph ph-calendar-blank"></i>
-                    <input type="text" id="monthPicker" name="month" class="form-input month-picker-input" value="{{ request('month', date('Y-m')) }}" placeholder="Pilih Bulan">
-                </div>
+
+        <div class="filter-group-inline">
+            <span class="text-uppercase text-bold text-muted-custom">Pilih Periode</span>
+            <div class="input-with-icon" style="width: 220px;">
+                <i class="ph ph-calendar-blank"></i>
+                <input type="text" id="monthPicker" name="month" class="form-input month-picker-input" value="{{ request('month', date('Y-m')) }}" placeholder="Pilih Bulan">
             </div>
+        </div>
     </form>
 
     <!-- Top Summary Cards (Hanya tampil jika tidak ada filter status) -->
