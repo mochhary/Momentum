@@ -189,8 +189,39 @@ tr:last-child td { border-bottom: none; }
 .text-muted-small { font-size: 0.8rem; color: var(--text-muted); }
 .text-head-custom { color: var(--text-head); }
 
-.month-picker-input { width: 220px; cursor: pointer; padding-right: 48px; font-weight: 700; }
-.calendar-icon-overlay { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--primary); pointer-events: none; font-size: 1.2rem; }
+.filter-group-inline {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-label-inline {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--text-head);
+    white-space: nowrap;
+    margin: 0;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 14px;
+    color: var(--primary);
+    font-size: 1.2rem;
+    pointer-events: none;
+}
+
+.input-with-icon .form-input {
+    padding-left: 42px !important;
+}
+
+.month-picker-input { width: 220px; cursor: pointer; font-weight: 700; }
 
 .badge-printed-custom { background: var(--primary-light); color: var(--primary); border: 1px solid rgba(66, 122, 181, 0.2); }
 

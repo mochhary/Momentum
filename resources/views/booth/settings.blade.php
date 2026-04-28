@@ -57,7 +57,9 @@
                 </button>
                 
                 <div style="text-align: center; margin-top: 12px;">
-                    <a href="{{ route('booth.preview', $order->order_code) }}" style="color: var(--text-muted); font-size: 0.8rem; text-decoration: none;">← Kembali ke Preview</a>
+                    <a href="{{ route('booth.preview', $order->order_code) }}" class="btn btn-secondary" style="padding: 16px; font-size: 1rem; width: auto; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="ph ph-arrow-left"></i> Kembali ke Preview
+                    </a>
                 </div>
             </div>
 

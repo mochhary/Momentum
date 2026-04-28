@@ -37,6 +37,32 @@ class AdminFrameController extends Controller
         return back()->with('error', 'Gagal mengupload gambar.');
     }
 
+    public function update(Request $request, Frame $frame)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'layout_config' => 'required|string',
+        ]);
+
+        $frame->update([
+            'name' => $request->name,
+            'layout_config' => json_decode($request->layout_config, true),
+        ]);
+
+        // Optional image update if provided
+        if ($request->hasFile('image')) {
+            // Delete old
+            if ($frame->image && Storage::disk('public')->exists($frame->image)) {
+                Storage::disk('public')->delete($frame->image);
+            }
+            // Store new
+            $path = $request->file('image')->store('frames', 'public');
+            $frame->update(['image' => $path]);
+        }
+
+        return redirect()->route('admin.frames.index')->with('success', 'Frame berhasil diperbarui!');
+    }
+
     public function destroy(Frame $frame)
     {
         if ($frame->image && Storage::disk('public')->exists($frame->image)) {

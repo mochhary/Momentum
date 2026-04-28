@@ -33,7 +33,7 @@
             </div>
 
             <div style="margin-top: auto; padding-top: 20px;">
-                <a href="{{ route('booth.settings', $order->order_code) }}" class="btn btn-secondary" style="padding: 15px; width: 100%;">
+                <a href="{{ route('booth.settings', $order->order_code) }}" class="btn btn-secondary" style="padding: 16px; font-size: 1rem; width: auto; display: inline-flex; align-items: center; gap: 8px;">
                     <i class="ph ph-arrow-left"></i> Kembali & Ubah
                 </a>
             </div>

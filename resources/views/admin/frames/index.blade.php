@@ -17,23 +17,27 @@
     </div>
 
     <div class="editor-section animate-in">
-        <h3 style="margin-bottom: 30px; font-size: 1.5rem;">Tambah Frame Baru</h3>
+        <h3 style="margin-bottom: 30px; font-size: 1.5rem;" id="formTitle">Tambah Frame Baru</h3>
         
         <form action="{{ route('admin.frames.store') }}" method="POST" enctype="multipart/form-data" id="frameForm">
             @csrf
+            <div id="methodField"></div>
             <input type="hidden" name="layout_config" id="layoutConfigInput">
             
             <div id="step1">
                 <div class="form-group">
                     <label class="form-label">Tipe Orientasi</label>
                     <div style="display: flex; gap: 20px;">
-                        <button type="button" class="orientation-btn active" data-orient="vertical" onclick="setOrient('vertical')">
+                        <button type="button" class="orientation-btn active" data-orient="vertical" onclick="debugSetOrient('vertical')">
                             <i class="ph ph-device-mobile"></i> Vertikal (Portrait)
                         </button>
-                        <button type="button" class="orientation-btn" data-orient="horizontal" onclick="setOrient('horizontal')">
+                        <button type="button" class="orientation-btn" data-orient="horizontal" onclick="debugSetOrient('horizontal')">
                             <i class="ph ph-rectangle"></i> Horizontal (Landscape)
                         </button>
                     </div>
+                    <p id="orientationNotice" style="font-size: 0.8rem; color: var(--primary); margin-top: 10px; font-weight: 600;">
+                        <i class="ph ph-info"></i> Perhatian: Pastikan file desain yang diupload adalah <b>Portrait/Vertikal</b>.
+                    </p>
                 </div>
 
                 <div class="form-group">
@@ -47,7 +51,7 @@
                         <i class="ph ph-cloud-arrow-up" style="font-size: 50px; color: var(--primary); margin-bottom: 20px;"></i>
                         <h4 style="font-size: 1.2rem; margin-bottom: 10px;">Klik atau seret file ke sini</h4>
                         <p style="color: var(--text-muted);">Maksimal 5MB. Pastikan lubang foto sudah transparan.</p>
-                        <input type="file" name="image" id="frameImage" accept="image/png" required style="display:none;" onchange="handleFileSelected(event)">
+                        <input type="file" name="image" id="frameImage" accept="image/png" style="display:none;" onchange="handleFileSelected(event)">
                     </label>
                 </div>
             </div>
@@ -56,15 +60,17 @@
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 30px; background: var(--bg-page); padding: 40px; border-radius: var(--radius-lg); border: 2px dashed var(--primary);">
                     <img id="previewImg" style="max-width: 300px; border-radius: 12px; box-shadow: var(--shadow-lg); background: white;">
                     <div style="display: flex; gap: 20px; width: 100%; max-width: 500px;">
-                        <button type="button" onclick="cancelUpload()" class="btn btn-secondary" style="flex: 1;">Batal</button>
-                        <button type="button" onclick="openEditor()" class="btn btn-primary" style="flex: 1;">Atur Posisi Slot Foto</button>
+                        <button type="button" onclick="cancelUpload()" class="btn btn-secondary" style="flex: 1; padding: 15px;">Batal</button>
+                        <button type="button" onclick="openEditor()" class="btn btn-primary" style="flex: 1; padding: 15px;">Atur Posisi Slot Foto</button>
                     </div>
                 </div>
             </div>
             
-            <button type="submit" id="submitBtn" class="btn btn-primary btn-block" style="margin-top: 30px; display: none; padding: 20px;">
-                <i class="ph ph-floppy-disk"></i> Simpan Ke Database
-            </button>
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <button type="submit" id="submitBtn" class="btn btn-primary btn-block" style="display: none; padding: 20px; flex: 1;">
+                    <i class="ph ph-floppy-disk"></i> <span id="submitBtnText">Simpan Ke Database</span>
+                </button>
+            </div>
         </form>
     </div>
 
@@ -72,10 +78,19 @@
     <div class="frame-grid animate-in animate-delay-1">
         @foreach($frames as $frame)
         <div class="frame-card">
-            <form action="{{ route('admin.frames.destroy', $frame->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus frame ini?');">
-                @csrf @method('DELETE')
-                <button type="submit" class="btn-delete"><i class="ph ph-trash"></i></button>
-            </form>
+            <div class="frame-actions">
+                <button type="button" class="btn-action btn-edit-frame" title="Edit Frame" 
+                        data-frame="{{ json_encode($frame) }}"
+                        onclick="handleEditClick(this)">
+                    <i class="ph ph-pencil-simple"></i>
+                </button>
+                <form id="delete-form-{{ $frame->id }}" action="{{ route('admin.frames.destroy', $frame->id) }}" method="POST" style="display: none;">
+                    @csrf @method('DELETE')
+                </form>
+                <button type="button" class="btn-action btn-delete-frame" title="Hapus Frame" onclick="confirmDelete({{ $frame->id }})">
+                    <i class="ph ph-trash"></i>
+                </button>
+            </div>
             <div class="frame-img-container">
                 <img src="{{ asset('storage/' . $frame->image) }}" alt="{{ $frame->name }}">
             </div>
@@ -84,11 +99,6 @@
             </div>
         </div>
         @endforeach
-        @if($frames->isEmpty())
-        <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-muted);">
-            Belum ada frame yang ditambahkan.
-        </div>
-        @endif
     </div>
 
     @if($frames->hasPages())
@@ -126,4 +136,61 @@
 
 @section('scripts')
 <script src="https://daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
+<script>
+    function debugSetOrient(type) {
+        if (window.setOrient) {
+            window.setOrient(type);
+        } else {
+            // Fallback UI jika island belum muat
+            document.querySelectorAll(".orientation-btn").forEach(btn => btn.classList.remove("active"));
+            const target = document.querySelector(`.orientation-btn[data-orient="${type}"]`);
+            if (target) target.classList.add("active");
+            
+            const notice = document.getElementById("orientationNotice");
+            if (notice) {
+                const text = type === "vertical" ? "Portrait/Vertikal" : "Landscape/Horizontal";
+                notice.innerHTML = `<i class="ph ph-info"></i> Memuat sistem... (Mohon tunggu sebentar)`;
+            }
+            console.warn("React Island is still loading...");
+        }
+    }
+
+    function handleEditClick(btn) {
+        try {
+            const rawData = btn.getAttribute('data-frame');
+            const frameData = JSON.parse(rawData);
+            
+            if (window.editFrame) {
+                window.editFrame(frameData);
+            } else {
+                Swal.fire({
+                    title: 'Memuat...',
+                    text: 'Sistem sedang menyiapkan editor. Silakan tunggu 1 detik lalu klik kembali.',
+                    icon: 'info',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+        } catch (e) {
+            console.error("Gagal parse data frame:", e);
+        }
+    }
+
+    function confirmDelete(id) {
+        Swal.fire({
+            title: 'Hapus Frame?',
+            text: "Data frame ini akan dihapus permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#E11D48',
+            cancelButtonColor: '#64748B',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        })
+    }
+</script>
 @endsection

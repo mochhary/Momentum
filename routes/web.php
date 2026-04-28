@@ -46,6 +46,7 @@ Route::middleware('admin.auth')->group(function () {
     // Manage Frames
     Route::get('/dashboard/frames', [App\Http\Controllers\AdminFrameController::class, 'index'])->name('admin.frames.index');
     Route::post('/dashboard/frames', [App\Http\Controllers\AdminFrameController::class, 'store'])->name('admin.frames.store');
+    Route::put('/dashboard/frames/{frame}', [App\Http\Controllers\AdminFrameController::class, 'update'])->name('admin.frames.update');
     Route::delete('/dashboard/frames/{frame}', [App\Http\Controllers\AdminFrameController::class, 'destroy'])->name('admin.frames.destroy');
 });
 

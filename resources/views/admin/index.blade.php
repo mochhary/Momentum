@@ -43,14 +43,13 @@
                 <button type="submit" name="status" value="expired" class="pill-tab {{ $status === 'expired' ? 'active' : '' }}">Expired</button>
             </div>
         </div>
-        
-        <div class="d-flex align-items-center gap-4">
-            <span class="badge badge-cream">Pilih Periode</span>
-            <div class="position-relative">
-                <input type="text" id="monthPicker" name="month" class="form-input month-picker-input" value="{{ $month }}">
-                <i class="ph ph-calendar-blank calendar-icon-overlay"></i>
+                <div class="filter-group-inline">
+                <label class="form-label-inline">Pilih Periode</label>
+                <div class="input-with-icon" style="width: 220px;">
+                    <i class="ph ph-calendar-blank"></i>
+                    <input type="text" id="monthPicker" name="month" class="form-input month-picker-input" value="{{ request('month', date('Y-m')) }}" placeholder="Pilih Bulan">
+                </div>
             </div>
-        </div>
     </form>
 
     <!-- Top Summary Cards (Hanya tampil jika tidak ada filter status) -->

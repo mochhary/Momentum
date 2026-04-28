@@ -44,12 +44,12 @@
                     <input type="tel" name="customer_phone" id="customer_phone" class="form-input" placeholder="08xxxxxxxxxx" value="{{ old('customer_phone') }}" required>
                 </div>
                 
-                <button type="button" class="btn btn-primary btn-block" id="generateBtn" onclick="generateAndSubmit(layoutConfig)" style="margin-top: 10px;">
+                <button type="button" class="btn btn-primary btn-block" id="generateBtn" onclick="generateAndSubmit()" style="margin-top: 10px;">
                     <i class="ph ph-check-circle"></i> Selesai & Bayar
                 </button>
             </div>
             <div class="desktop-header" style="text-align: left; margin-top: 24px;">
-                <a href="{{ route('frame.select') }}" class="text-primary" style="text-decoration: none; font-size: 0.95rem; font-weight: 700;">
+                <a href="{{ route('frame.select') }}" class="btn btn-secondary" style="text-decoration: none; font-size: 0.95rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
                     <i class="ph ph-arrow-left"></i> Pilih Frame Lain
                 </a>
             </div>
