@@ -75,14 +75,18 @@
             </div>
         </div>
     </form>
+
+    <div
+        id="booth-settings-island"
+        data-island="BoothSettings"
+        data-props='@json([
+            "priceColor" => $priceColor,
+            "priceBw" => $priceBw,
+        ])'
+        style="display: none;"
+    ></div>
 </div>
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/booth/settings.js') }}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        initSettings({{ $priceColor }}, {{ $priceBw }});
-    });
-</script>
 @endsection

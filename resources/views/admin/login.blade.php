@@ -56,9 +56,6 @@
             </div>
         </form>
     </div>
+    <div data-island="AdminLogin" style="display:none"></div>
 </div>
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/admin-login.js') }}"></script>
 @endsection

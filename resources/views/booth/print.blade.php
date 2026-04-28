@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="{{ asset('css/print.css') }}">
+    @vite(['resources/js/app.js'])
 </head>
 <body>
     <div class="screen-view animate-in">
@@ -45,15 +46,14 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/booth/print.js') }}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            initPrintProcess(
-                '{{ $order->order_code }}',
-                '{{ route("booth.index") }}',
-                '{{ route("booth.printed", $order->order_code) }}'
-            );
-        });
-    </script>
+    <div data-island="GlobalApp" style="display:none"></div>
+    <div
+        data-island="BoothPrint"
+        data-props="{{ json_encode([
+            'boothIndexUrl' => route('booth.index'),
+            'printedUrl' => route('booth.printed', $order->order_code),
+        ]) }}"
+        style="display:none"
+    ></div>
 </body>
 </html>

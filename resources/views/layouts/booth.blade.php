@@ -16,6 +16,7 @@
     <!-- Simple-Keyboard for Kiosk -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.min.js"></script>
+    @vite(['resources/js/app.js'])
     @yield('styles')
 </head>
 <body class="bg-page booth-body @yield('body_class')">
@@ -43,7 +44,7 @@
         @yield('content')
     </div>
 
-    <script src="{{ asset('js/script.js') }}"></script>
+    <div data-island="GlobalApp" style="display:none"></div>
     @yield('scripts')
 
 </body>

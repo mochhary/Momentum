@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/customer.css') }}">
+    @vite(['resources/js/app.js'])
     @yield('styles')
 </head>
 <body>
@@ -24,7 +25,7 @@
         @yield('content')
     </main>
 
-    <script src="{{ asset('js/script.js') }}"></script>
+    <div data-island="GlobalApp" style="display:none"></div>
     @yield('scripts')
 
 </body>

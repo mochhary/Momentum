@@ -119,31 +119,17 @@
         </div>
         <button id="cancelUploadBtn" type="button" onclick="cancelUpload()" class="btn btn-secondary" style="margin-top: 32px; width: 100%; color: var(--error); border-color: var(--error);">Batalkan Upload</button>
     </div>
+    <div
+        data-island="UploadEditor"
+        data-props="{{ json_encode([
+            'layoutConfig' => $frameConfig ? $frameConfig : [],
+            'frameImgUrl' => '/storage/' . $frame->image,
+        ]) }}"
+        style="display:none"
+    ></div>
 </div>
 @endsection
 
 @section('scripts')
 <script src="https://daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
-<script src="{{ asset('js/upload.js') }}"></script>
-<script>
-    const layoutConfig = {!! $frameConfig ? json_encode($frameConfig) : '[]' !!};
-    const frameImgUrl = "/storage/{{ $frame->image }}";
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        initEditor(layoutConfig, frameImgUrl);
-        
-        let lastWidth = window.innerWidth;
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            // Only re-init if the WIDTH changed (avoids mobile address bar trigger)
-            if (window.innerWidth === lastWidth) return;
-            lastWidth = window.innerWidth;
-
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                initEditor(layoutConfig, frameImgUrl);
-            }, 300);
-        });
-    });
-</script>
 @endsection

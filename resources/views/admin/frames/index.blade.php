@@ -119,11 +119,11 @@
         <img id="workspaceBg" class="bg-frame" src="">
         <div id="slotsContainer"></div>
     </div>
+    <div data-island="AdminFrames" style="display:none"></div>
 </div>
 
 @endsection
 
 @section('scripts')
 <script src="https://daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
-<script src="{{ asset('js/admin/frames.js') }}"></script>
 @endsection

@@ -70,15 +70,13 @@
             @endif
         </div>
     </div>
+    <div
+        data-island="BoothPayment"
+        data-props="{{ json_encode([
+            'expiredAtIso' => $order->expired_at ? $order->expired_at->toISOString() : '',
+            'statusUrl' => route('booth.status', $order->order_code),
+        ]) }}"
+        style="display:none"
+    ></div>
 </div>
-@endsection
-
-@section('scripts')
-<script src="{{ asset('js/booth/payment.js') }}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        initPaymentTimer('{{ $order->expired_at ? $order->expired_at->toISOString() : "" }}');
-        startPaymentStatusCheck('{{ route("booth.status", $order->order_code) }}');
-    });
-</script>
 @endsection

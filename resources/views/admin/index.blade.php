@@ -168,16 +168,12 @@
         {{ $tableData->links() }}
     </div>
     @endif
+
+    <div data-island="AdminDashboard" style="display:none"></div>
 </div>
 @endsection
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
-<script src="{{ asset('js/admin.js') }}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        initAdminDashboard();
-    });
-</script>
 @endsection

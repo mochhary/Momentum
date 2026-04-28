@@ -1,10 +1,6 @@
 @extends('layouts.booth')
 @section('title', 'Booth Cetak - Masukkan Kode Order')
 
-@section('scripts')
-<script src="{{ asset('js/booth/index.js') }}"></script>
-@endsection
-
 @section('content')
 <div class="card booth-card animate-in">
     <h2><i class="ph ph-key"></i> Masukkan Kode Momentum Anda</h2>
@@ -36,5 +32,7 @@
     <div class="keyboard-wrapper-kiosk animate-in">
         <div class="simple-keyboard"></div>
     </div>
+
+    <div data-island="BoothIndex" style="display:none"></div>
 </div>
 @endsection
