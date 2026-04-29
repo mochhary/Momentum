@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Momentum @hasSection('title') - @yield('title') @endif</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}?v=2">
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}?v=2" type="image/png">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}?v=3">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}?v=3" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -20,7 +20,8 @@
     @vite(['resources/js/app.js'])
     @yield('styles')
 </head>
-<body class="bg-page booth-body @yield('body_class')">
+<body class="booth-body @yield('body_class')">
+    @include('partials.background')
     @if(!request()->is('booth/*/payment') && !request()->routeIs('booth.payment.page'))
     <div class="custom-cursor">
         <div class="cursor-tip"></div>
@@ -29,12 +30,7 @@
         </div>
     </div>
     @endif
-    <div class="booth-wrapper d-flex flex-column align-items-center justify-content-center min-vh-100">
-        <div class="floating-bg">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+    <div class="booth-wrapper d-flex flex-column align-items-center justify-content-center min-vh-100" style="background: transparent;">
 
         <div class="booth-logo text-center" style="margin-bottom: 20px;">
             <img src="{{ asset('images/logo.png') }}" alt="Momentum" 

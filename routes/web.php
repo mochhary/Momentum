@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 // Customer Flow — /upload
 // ==========================================
 Route::get('/', function () {
-    return redirect('/upload');
-});
+    return view('home');
+})->name('home');
 Route::get('/upload', [PhotoboothController::class, 'selectFrame'])->name('frame.select');
 Route::get('/upload/{frame}', [PhotoboothController::class, 'uploadForm'])->name('upload.form');
 Route::post('/upload', [PhotoboothController::class, 'store'])->name('upload.store');
