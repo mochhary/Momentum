@@ -32,9 +32,10 @@
                 @endif
             </div>
 
-            <div style="margin-top: auto; padding-top: 20px;">
-                <a href="{{ route('booth.settings', $order->order_code) }}" class="btn btn-secondary" style="padding: 16px; font-size: 1rem; width: auto; display: inline-flex; align-items: center; gap: 8px;">
-                    <i class="ph ph-arrow-left"></i> Kembali & Ubah
+            <!-- Batalkan & Ubah Pengaturan (Small Link Button) -->
+            <div style="margin-top: auto; padding-top: 20px; text-align: center;">
+                <a href="{{ route('booth.settings', $order->order_code) }}" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; opacity: 0.7;">
+                    <i class="ph ph-arrow-left"></i> Batalkan & Ubah Pengaturan
                 </a>
             </div>
         </div>

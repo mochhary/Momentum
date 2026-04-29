@@ -32,18 +32,21 @@
 
 .display-order-code {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 3.5rem;
+    font-size: clamp(1.8rem, 10vw, 3.5rem); /* Adaptive font size */
     font-weight: 800;
-    letter-spacing: 8px;
+    letter-spacing: clamp(4px, 1.5vw, 10px); /* Adaptive spacing */
     color: var(--primary);
     margin: 24px 0;
-    padding: 24px;
+    padding: 24px 10px;
     background: var(--bg-cream-light);
     border-radius: var(--radius-md);
     border: 3px dashed var(--primary);
     user-select: all;
-    line-height: 1;
+    line-height: 1.2;
     filter: drop-shadow(0 10px 20px rgba(66, 122, 181, 0.1));
+    white-space: nowrap; /* Prevent breaking into 2 lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .guide-box {

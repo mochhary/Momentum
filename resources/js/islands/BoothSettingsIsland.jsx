@@ -30,6 +30,15 @@ export default function BoothSettingsIsland({ priceColor = 0, priceBw = 0 }) {
                 totalDisplay.textContent = `Rp ${total.toLocaleString("id-ID")}`;
             }
 
+            const previewContainer = document.getElementById("previewContainer");
+            if (previewContainer) {
+                if (mode === "bw") {
+                    previewContainer.classList.add("is-bw");
+                } else {
+                    previewContainer.classList.remove("is-bw");
+                }
+            }
+
             document.querySelectorAll(".mode-card").forEach((card) => {
                 card.classList.remove("selected");
             });

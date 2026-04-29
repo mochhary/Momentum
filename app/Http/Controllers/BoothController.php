@@ -55,7 +55,7 @@ class BoothController extends Controller
             return redirect()->route('booth.print', $code);
         }
 
-        return redirect()->route('booth.preview', $code);
+        return redirect()->route('booth.settings', $code);
     }
 
     /**
@@ -81,7 +81,7 @@ class BoothController extends Controller
     public function settings($code)
     {
         $order = Order::where('order_code', $code)
-            ->whereIn('status', ['waiting', 'pending_payment', 'expired'])
+            ->whereIn('status', ['waiting', 'pending_payment', 'expired', 'paid'])
             ->with('photos')
             ->firstOrFail();
 

@@ -96,12 +96,97 @@ class AdminController extends Controller
             }
         }
 
+        // Chart Data: Monthly (Daily revenue in selected month)
+        $monthlyDataRaw = Order::whereIn('status', ['paid', 'printed'])
+            ->whereMonth('created_at', $parsedMonth->month)
+            ->whereYear('created_at', $parsedMonth->year)
+            ->selectRaw("DAY(created_at) as label, SUM(total_price) as revenue")
+            ->groupBy('label')
+            ->get()
+            ->pluck('revenue', 'label');
+        
+        $monthlyChartData = [];
+        for ($i = 1; $i <= $parsedMonth->daysInMonth; $i++) {
+            $monthlyChartData[] = [
+                'label' => str_pad($i, 2, '0', STR_PAD_LEFT),
+                'revenue' => (int)($monthlyDataRaw[$i] ?? 0)
+            ];
+        }
+
+        // Chart Data: Yearly (Monthly revenue in selected year)
+        $yearlyDataRaw = Order::whereIn('status', ['paid', 'printed'])
+            ->whereYear('created_at', $parsedMonth->year)
+            ->selectRaw("MONTH(created_at) as label, SUM(total_price) as revenue")
+            ->groupBy('label')
+            ->get()
+            ->pluck('revenue', 'label');
+        
+        $yearlyChartData = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $yearlyChartData[] = [
+                'label' => str_pad($i, 2, '0', STR_PAD_LEFT),
+                'revenue' => (int)($yearlyDataRaw[$i] ?? 0)
+            ];
+        }
+
+        // 4. Chart Data: Overall (Yearly revenue)
+        $firstOrder = Order::orderBy('created_at', 'asc')->first();
+        $startYear = $firstOrder ? $firstOrder->created_at->year : now()->year;
+        $currentYear = now()->year;
+        
+        $overallDataRaw = Order::whereIn('status', ['paid', 'printed'])
+            ->selectRaw("YEAR(created_at) as label, SUM(total_price) as revenue")
+            ->groupBy('label')
+            ->get()
+            ->pluck('revenue', 'label');
+        
+        $overallChartData = [];
+        // Start from the actual first year of the application
+        for ($i = $startYear; $i <= $currentYear; $i++) {
+            $overallChartData[] = [
+                'label' => (string)$i,
+                'revenue' => (int)($overallDataRaw[$i] ?? 0)
+            ];
+        }
+
+        // Chart Data: Today (Hourly revenue)
+        $todayDataRaw = Order::whereIn('status', ['paid', 'printed'])
+            ->whereDate('created_at', \Carbon\Carbon::today())
+            ->selectRaw("HOUR(created_at) as label, SUM(total_price) as revenue")
+            ->groupBy('label')
+            ->get()
+            ->pluck('revenue', 'label');
+        
+        $todayChartData = [];
+        for ($i = 0; $i < 24; $i++) {
+            $todayChartData[] = [
+                'label' => str_pad($i, 2, '0', STR_PAD_LEFT),
+                'revenue' => (int)($todayDataRaw[$i] ?? 0)
+            ];
+        }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'overallTotal' => number_format($overallTotal, 0, ',', '.'),
+                'overallCount' => number_format($overallCount),
+                'todayTotal' => number_format($todayTotal, 0, ',', '.'),
+                'todayCount' => number_format($todayCount),
+                'monthlyTotal' => number_format($monthlyTotal, 0, ',', '.'),
+                'monthlyCount' => number_format($monthlyCount),
+                'yearlyTotal' => number_format($yearlyTotal, 0, ',', '.'),
+                'yearlyChartData' => $yearlyChartData,
+                'overallChartData' => $overallChartData,
+                'todayChartData' => $todayChartData
+            ]);
+        }
+
         return view('admin.index', compact(
             'overallTotal', 'overallCount',
             'todayTotal', 'todayCount',
             'monthlyTotal', 'monthlyCount',
             'yearlyTotal', 'yearlyCount',
-            'tableData', 'status', 'month', 'groupBy', 'parsedMonth'
+            'status', 'groupBy', 'tableData', 'parsedMonth',
+            'monthlyChartData', 'yearlyChartData', 'overallChartData', 'todayChartData'
         ));
     }
 }
